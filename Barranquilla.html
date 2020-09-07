@@ -25,14 +25,13 @@
 				<!-- Nav -->
 					<nav id="nav">
 						<ul class="links">
-							<li class="active"><a href="index.html">Principal</a></li>
+							<li ><a href="index.html">Principal</a></li>
 							<li><a href="Bogota.html">Bogotá</a></li>
 							<li><a href="Medellin.html">Medellín</a></li>
 							<li><a href="Cartagena.html">Cartagena</a></li>
-							<li><a href="Barranquilla.html">Barranquilla</a></li>
+							<li class="active"><a href="Barranquilla.html">Barranquilla</a></li>
 							<li><a href="Cali.html">CAli</a></li>
-							<li><a href="generic.html">Elementos Importantes</a></li>
-							<li><a href="elements.html">Elementos Importantes</a></li>
+
 						</ul>
 					</nav>
 
@@ -42,10 +41,11 @@
 						<!-- Post -->
 							<section class="post">
 								<header class="major">
-									<span class="date">Septiembre 6 de 2020</span>
+									<span class="date">Septiembre 7 de 2020</span>
 									<h1>Evolución COVID 19<br /></h1>
 									<h1>Barranquilla<br /></h1>
-									<p>Texto.</p>
+									<p>De los análisis realizados, se encuentra que la pandemia se encuentra en etapas finales en Barranquilla (sin descartar un posible rebrote). De acuerdo con los pronósticos, se evidencia un comportamiento positivo para los próximos meses, sin embargo, debe destacarse que dada la naturaleza del fenómeno en cuestión y los múltiples factores que inciden sobre este hay un factor importante de incertidumbre como lo demuestran los intervalos de confianza asociados.</p> 
+									<p>Con base en las imágenes presentadas, se encuentra que en general los modelos que usaron datos promediados como información de entrada presentan mejores resultados que aquellos que usaron los datos sin promediar. Esto se debe a que la calidad de la información no es la mejor. Por su parte, se encuentra que las métricas empleadas arrojan valores bastante aceptables, que refuerzan los pronósticos empleados</p>
 								</header>
 
 								
@@ -55,24 +55,44 @@
 								<header>
 									<h2>Casos Confirmados</h2>
 								</header>
+								<p>Se presenta la evolución de los casos confirmados con la predicción mediante Redes Neuronales y el modelo ARIMA.</p>
+								
 								<h3> Red Neuronal</h3>
 								<span class="image fit"><img src="images\MLP_confirmadosBrr_suavizada.png" alt="" />
 								<span class="image fit"><img src="images\ARIMA_Confirmados_Brr.jpg" alt="" />
 
 								<hr />
 
-
 								<header>
 									<h2>Casos Activos</h2>
 								</header>
+								<p>Se presentan las predicciones para esta variable utilizando un modelo de Redes Neuronales y un modelo ARIMA. Adicionalmente, se realiza el ajuste de los datos al modelo SIR y finalmente se presenta el resultado de unir los modelos de corto plazo (Redes Neuronales) y largo plazo (SIR) asignando pesos de acuerdo con la degradación evidenciada en estos.</p>
+								
 								<h3> Red Neuronal</h3>
 								<span class="image fit"><img src="images\MLP_activosBrr_suavizada.png" alt="" />
 								<span class="image fit"><img src="images\ARIMA_Activos_Brr.jpg" alt="" />
+								<span class="image fit"><img src="images\SIR_activosBrr.png" alt="" />
+								<span class="image fit"><img src="images\Comp_activosBrr.png" alt="" />
 								
 								<hr />
+
+								<header>
+									<h2>Escenarios</h2>
+								</header>
+								<p>Ahora, con el ánimo de satisfacer el objetivo de este ejercicio, el cual consiste en generar una herramienta para la toma de decisiones para la preparación ante los riesgos que contrae esta pandemia, se presentan dos escenarios. En el primero se supone que se realiza una apertura total, generando nuevos contagios y con mayor fuerza que al principio de la pandemia, indicando que se tendrá un pico entre los meses de Octubre y Noviembre. Y en el segundo, se supone una apertura por un máximo de 15 días, y luego se toma la decisión de imponer una cuarentena por 30 días, donde se observa una curva más aplanada que la del supuesto anterior. </p>
+								
+								<h3> Apertura Económica </h3>
+								<span class="image fit"><img src="images\imagenes_SIR_Escenarios\SIR_AperturaBrr.png" alt="" />
+								<h3> Cuarentena Estricta de 30 días </h3>
+								<span class="image fit"><img src="images\imagenes_SIR_Escenarios\SIR_Aper_CuarenBrr.png" alt="" />
+
+								<hr />
+
 								<header>
 									<h2>Casos Nuevos</h2>
 								</header>
+								<p>Se presenta la evolución de los casos nuevos con sus respectivas predicciones usando Redes Neuronales y un modelo ARIMA.</p>
+								
 								<h3> Red Neuronal</h3>
 								<span class="image fit"><img src="images\MLPnuevos_Brr_suavizada.png" alt="" />
 								<span class="image fit"><img src="images\ARIMA_Nuevos_Brr.jpg" alt="" />
@@ -81,6 +101,8 @@
 								<header>
 									<h2>Recuperados</h2>
 								</header>
+								<p>Se presenta la evolución de los casos recuperados con sus respectivas predicciones usando Redes Neuronales y un modelo ARIMA.</p>
+								
 								<h3> Red Neuronal</h3>
 								<span class="image fit"><img src="images\MLPrecuperados_Brr_suavizada.png" alt="" />
 								<span class="image fit"><img src="images\ARIMA_Recuperados_Brr.jpg" alt="" />
@@ -89,6 +111,8 @@
 								<header>
 									<h2>Muertes</h2>
 								</header>
+								<p>Se presenta la evolución de las muertes con sus respectivas predicciones usando Redes Neuronales y un modelo ARIMA.</p>
+								
 								<h3> Red Neuronal</h3>
 								<span class="image fit"><img src="images\MLPmuertes_Brr_suavizada.png" alt="" />
 								<span class="image fit"><img src="images\ARIMA_Muertes_Brr.jpg" alt="" />

@@ -41,8 +41,7 @@
 							<li><a href="Cartagena.html">Cartagena</a></li>
 							<li><a href="Barranquilla.html">Barranquilla</a></li>
 							<li><a href="Cali.html">CAli</a></li>
-							<li><a href="generic.html">Elementos Importantes</a></li>
-							<li><a href="elements.html">Elementos Importantes</a></li>
+
 						</ul>
 					</nav>
 
@@ -52,7 +51,7 @@
 						<!-- Featured Post -->
 							<article class="post">
 								<header class="major">
-									<span class="date">Septiembre 6 de 2020</span>
+									<span class="date">Septiembre 7 de 2020</span>
 									<h2><a href="#">Evolución de casos activos de SARS-CoV-2 en Colombia <br />
 										</a></h2>
 									<p>por Daniel García Alzate, Cristian Diaz Jaramillo y Victor Daniel Muñoz Jaramillo<br /></p>
@@ -60,15 +59,13 @@
 								<a href="#" class="image main"><img src="images/pic01.jpg" alt="" /></a>
 								<p>Colombia no ha sido ajena a la crisis generada por la aparición del síndrome respiratorio agudo severo (COVID-19), enfermedad que ha llevado al limite a la sociedad debido a su impacto y a las medidas disruptivas, rigurosas y extremas que han tomado los gobiernos para controlar su transmisión, desde su reconocimiento como una pandemia mundial el 11 de marzo de 2020. Uno los principales elementos para la toma de decisiones ha sido el pronóstico y la modelación del total de casos diagnosticados, el total de casos activos, la cantidad de casos recuperados y las muertes esperadas, tanto en el corto como en el largo plazo.</p>
 								<p>En la literatura más relevante, la evolución de casos en general ha sido abordada de dos formas diferentes: la primera es mediante el uso de modelos SIR y sus variaciones (Susceptible-Infectado-Recuperado), que son básicamente modelos de simulación basados en supuestos muy fuertes sobre la evolución de la enfermedad. la segunda aproximación corresponde al uso de metodologías de pronóstico de series de tiempo (tanto estadísticas como de inteligencia artificial) para pronosticar los nuevos casos activos o los casos confirmados; sin embargo, esta aproximación también supone fuertes hipótesis sobre como se comporta la enfermedad.</p>
-								<p>Describir el objetivo y los alcances de lo que se quiere mostrar en esta publicación.</p>
 
-								
 
 								<hr />
 								<header>
 									<h2>Entendimiento del negocio</h2>
 								</header>
-								<p>La Covid – 19, ha representado un reto para la salud, la economía, la política y el manejo de las sociedades globales, las cuales han evidenciado la pérdida de un sin número de personas que día a día fallecen a causa de este virus que se transmite de humano a humano a través de las relaciones interpersonales que vivimos día a día, como, por ejemplo, las reuniones de oficina y amigos, los encuentros familiares y los demás contactos de nuestra propia cotidianidad. </p>
+								<p>La emergencia sanitaria por Covid-19 ha representado un reto para la salud, la economía, la política y el manejo de las sociedades globales, las cuales han evidenciado la pérdida de un sin número de personas que día a día fallecen a causa de este virus que se transmite de humano a humano a través de las relaciones interpersonales que vivimos día a día, como, por ejemplo, las reuniones de oficina y amigos, los encuentros familiares y los demás contactos de nuestra propia cotidianidad. </p>
 								<p>Por tal razón, la predicción de aquello que puede suceder o la modelación de diferentes eventos, permite que las poblaciones, se preparen y puedan afrontar con efectividad cada uno de los riesgos y se deleguen los mecanismos que busquen salvaguardar la vida. </p>
 								<hr />
 
@@ -81,7 +78,7 @@
 								<p>La ID del caso, es usada como un indicador de la cantidad de casos reportados; la fecha de notificación, como la fecha de contagio en caso de que el paciente sea asintomático; la Ciudad de ubicación, como variable de agrupación; FIS, como la fecha de contagio para pacientes sintomáticos; la fecha de muerte y fecha de recuperado, como son descritas en su nombre. Es importante aclarar que existen ciertas inconsistencias en los datos, como fechas de recuperación previas a fechas de diagnóstico o reporte web, al hacer un análisis de los datos, se encontró que dichas inconsistencias se mitigaban casi por completo al usar la combinación descrita de FIS y fecha de notificación, como fecha de contagio.</p>
 								<p>El siguiente paso consiste en eliminar los datos correspondientes a ciudades diferentes de Bogotá, Medellín, Cali, Barranquilla y Cartagena. Y crear subconjuntos de datos por cada una de las ciudades previamente mencionadas.</p>
 								<p>En vista de que se requiere conocer el comportamiento de los casos confirmados, casos activos, casos nuevos, muertes (se decide trabajar este campo por día) y casos recuperados (también por día); y de antemano se deduce que las primeras dos son derivadas de las últimas tres; se crean series de tiempo que permitan desagregar la cantidad de casos para cada una de las tres últimas variables objetivo. Estas series de tiempo se construyen de longitudes idénticas, iniciando el 27 de febrero de 2020 (Fecha del primer caso según FIS) y finalizando n días antes del día en que se ejecute el código (estos n días antes tratan de mitigar los errores de información que pueden existir en los últimos días reportados y tiene un valor ajustable que por defecto está en 4). </p>
-								
+
 								<hr />
 								<header>
 									<h2>Modelado</h2>
@@ -115,11 +112,49 @@
 								<p>El procedimiento indicado se realiza para las 5 principales ciudades de Colombia para los casos nuevos, recuperados y muertos. Para calcular los casos confirmados, se hace una suma acumulada de los casos nuevos y para calcular los casos activos se hace una suma acumulada de la serie que se obtiene al sustraer los casos muertos y recuperados de los casos activos.</p>
 								<p>En vista de los problemas que se encontraron con los datos (valores atípicos, saltos abruptos, etc) se realiza el modelo con los datos diarios y con un promedio de 4 días. Se encuentra que usando el promedio de 4 días se mitigan las inconsistencias en la información de entrada (esto se valida por inspección visual y con las métricas aplicadas) y por tanto se decide presentar el modelo usando el promedio de 4 días (el otro modelo también está disponible en el código)</p>
 								<h3> ARIMA </h3>
-								<p>Falta</p>
+								<p>El modelo ARIMA es un método estadístico muy popular para la predicción de series de tiempo. ARIMA se entiende por Modelo Autorregresivo Integrado de Promedio Móvil y trabaja bajo las siguientes suposiciones:</p>
+								<div class="row">
+									<div class="col-15">
+										<ul>
+											<li>La serie de datos es estacionaria, lo que significa que la media y la variancia no son dependientes de la variable temporal. Una serie se puede hacer estacionaria utilizando la transformación logarítmica o realizando diferenciación. </li>
+											<li>Los datos de la entrada deben pertenecer a una serie univariable, dado que ARIMA utiliza los datos del pasado para predecir el futuro.</li>
+										</ul>
+									</div>
+								</div>
+								<p>Los modelos ARIMA tienen tres componentes – AR (término Autorregresivo), I (término diferenciado) y MA (termino de Promedio Móvil)</p>
+								<div class="row">
+									<div class="col-15">
+										<ul>
+											<li>AR: Autoregresión: utiliza la relación dependiente entre una observación y cierto número de observarciones retrasadas. </li>
+											<li>I: Integrado: El uso de la diferenciación de observaciones para hacer estacionaria una serie de tiempo.</li>
+											<li>MA: Media Móvil: Utiliza la dependencia entre una observación y un error residual de un modelo de promedio móvil aplicado a observaciones retrasadas.</li>
+										</ul>
+									</div>
+								</div>
+								<p>Cada uno de estos componenetes se especifica explícitamente en el modelo como un parámetro. Para ellos se utiliza una notación estándar de ARIMA (p,q,d), donde cada valor corresponde a un número entero y se definen de la siguiente manera: </p>
+								<div class="row">
+									<div class="col-15">
+										<ul>
+											<li>p: El número de observaciones de retraso incluidas en el modelo, recibe el nombre de orden de retraso.</li>
+											<li>d: El número de veces que se diferencian las observaciones sin procesar, también llamado el grado de diferenciación.</li>
+											<li>q: El tamaño de la ventana de media móvil, tambien llamado orden de media móvil.</li>
+										</ul>
+									</div>
+								</div>
+								<p>Antes de aplicar este modelo estadístico sobre una serie de tiempo, se debe comprobar la estacionariedad. Para este ejercicio se realiza la prueba de Aumented Dickey-Fuller. Este test pone a prueba la serie e indica si es necerario aplicar alguna transformación, por ejemplo, se utiliza el log de la serie para bajar la tasa a la cual la media se encuentra aumentando y la diferenciación para eliminar la tendencia. </p>
+								<p>Seguido a lo anterior, se procede con la selección de los parámetros p y q. Para ello, se pueden utilizar las gráficas de autocorrelación y de autocorrelación parcial de la serie. Sin embargo, para este ejercicio se realiza una comparación entre varias combinaciones para luego escoger la mejor combinación, basado en una métrica de error. Asimismo, para el entrenamiento y testeo se eligen varios porcentajes para la ventana temporal (0.75, 0.85 y 0.90). Finalmente se elige aquella combinación que logra el mejor error promedio en los datos de testeo para las particiones seleccionadas.   </p>
+								
+								
 								<h3>Modelado a largo plazo</h3>
 								<h3>Modelo SIR</h3>
-								<p>Falta</p>
-
+								<p>Con los datos arrojados en Casos_positivos_de_COVID-19_en_Colombia de la página datos.gov.co, se definen los parámetros Casos Confirmados y Recuperados y con la base de datos de la población proyectada hasta el 2020 del DANE, se identifica el número de habitantes por Ciudad que sirven como valores iniciales en la corrida del modelo SIR, la cual se encuentra representada a través de las siguientes ecuaciones diferenciales:</p>
+								<img src="images/formula3.png" alt="" />
+								<p>En este caso, las variables S, I, R, representan las personas Susceptibles, las personas Infectadas y las personas recuperadas respectivamente. Así, con los datos del Dane y datos.gov.co, se procede a calibrar el modelo, de forma que las variables beta y gamma, coincidan de manera precisa con los Casos Activos a fecha de corte del 7 de septiembre de 2020 para cada Ciudad del top5 designado para Bogotá D.C, Medellín, Cali, Barranquilla y Cartagena.</p>
+								<p>Con un promedio para beta de 0.492798 y gamma de 0.4218420, lo que representa una tasa de reproducción del virus R_0 de 1.168205, en estas condiciones.</p>
+								<P>Por otra parte, de los supuestos identificados en países como Alemania, Italia, España y el Reino Unido, identificados en el documento “A Contribution to the Mathematical Modeling of the Corona/COVID-19 Pandemic” del autor Günter Bärwolff, se encontraron los parámetros beta y gamma, 0.215, 0.07 respectivamente, los cuales son parámetros típicos del comportamiento del virus, y con estos valores se modeló, teniendo en cuenta como valores iniciales, los susceptibles, recuperados e infectados al día de hoy 7 de septiembre de 2020 y los parámetros antes dichos.</P>
+								<p>De esta manera, se muestra que el virus tendrá un pico entre los meses de Octubre y Noviembre, ya que la reapertura, puede generar nuevos contagios, con mayor fuerza que al principio de la pandemia, cuando teníamos contados 5 o 6 casos.</p>
+								<p>Por otra parte, teniendo en cuenta que dentro de 15 días, se observaran los nuevos casos de la reapertura, y tomando la decisión de cuarentena por 30 días, la curva puede aplanarse y sufrir un pico menos elevado en un mes después a si se mantiene la reapertura total, además, la literatura explica el modelo modificado a través de un parámetro k = 0,2, representado en la disminución de las infecciones debido al aislamiento, con el cual se evidencia una disminución en los infectados del 40,42% para Bogotá, 49,63% para Medellín, 45,07% para Cali, 40,86% para Barranquilla y 49,6% para Cartagena.</p>
+								
 								<hr />
 								<header>
 									<h2>Evaluación</h2>
@@ -133,12 +168,23 @@
 								<p>Es una métrica que permite determinar el error de los valores pronosticados respecto a los valores reales. Ésta se usa cuando los errores son considerablemente altos, por lo que es deseable no penalizar grandes diferencias entre los valores pronosticados y reales. Una falencia de esta métrica es que penaliza la subestimación</p>
 								<img src="images/formula2.png" alt="" />
 								<p>En vista de que el orden de magnitud de los datos a tratar es considerable, se decide calcular el error mediante esta métrica y así no penalizar grandes diferencias.</p>
-								<h3>Intervalos de confianza</h3>
-								<p>falta</p>
+
 								<h3>Desempeño de los modelos</h3>
 								<p>Para los modelos empleados se aplican las métricas seleccionadas sobre los datos de entrenamiento y sobre los datos de prueba. Para evaluar el desempeño de cada modelo, se analizan las métricas a la luz de los valores obtenidos y del contraste entre resultados para sets de entrenamiento y prueba (principalmente)</p>
 
-
+								<h2>Programación</h2>
+								<div class="box">
+									<p>En el archivo <b>Lectura_Limpieza_datos.py</b> se encuentra el compendio de los códigos principales.</p>
+									<p>Al inicio del código, se plantean tres variables ajustables por el usuario, que son: días_restar (los últimos días con información disponible que no serán tenidos en cuenta, ya que son días de información incompleta), días_pred (días de predicción a corto plazo), media_movil (cantidad de días que se promediarán para mitigar errores por datos atípicos e información mal reportada)</p>
+									<p>La función <b>limpieza_datos</b>, realiza la limpieza y adecuación de los datos de entrada para los modelos. En esta función se entregan los Data Frames para cada cada una de las 5 variables objetivo para cada ciudad.</p>
+									<p>La función <b>redes_neuronales</b> realiza el pronóstico de las series de tiempo para los datos sin promediar, por medio de regresión de perceptrón multicapa, la optimización de los parámetros se hace en un archivo aparte. Como se encuentra que la siguiente función arroja mejores resultados, los archivos de salida de ésta no son presentados en el dashboard.</p>
+									<p>La función <b>redes_neuronales_suavizadas</b> realiza el mismo proceso de la función anterior, pero con los datos suavizados (promedio de 4 días). Esta función arroja las gráficas para los valores reales y prónosticados para 3 de las variables de interés (Casos nuevos, recuperados y muertes por día) para las 5 ciudades. Adicionalmente, en cada gráfica se reportan los errores MSLE de entrenamiento y prueba y el coeficiente R2 de entrenamiento y prueba.</p>
+									<p>La función <b>variables_derivadas</b> saca las gráficas de los casos confirmados y casos activos para cada ciudad, a partir de las otras 3 variables.</p>
+									<p>La función <b>casos</b> se encarga de hacer el pronóstico a largo plazo usando el modelo SIR y con base en funciones optimizadoras.</p>
+									<p>La función <b>Unir_modelos</b> se encarga de unir los modelos de corto y lago plazo asignando pesos de acuerdo con la degradación evidenciada de estos.</p>
+									<p>Finalmente, se presenta el desarrollo del modelo Arima, el cuál incorpora un proceso de optimización basado en el MSLE.</p>
+									<p>Adicionalmente, se tiene otro archivo que contiene el modelo SIR analizado desde diferentes escenarios.</p>
+								</div>
 
 							</article>
 
